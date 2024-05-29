@@ -8,6 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Transaksi extends Model
 {
     use HasFactory;
-    protected $fillable = ['id_produk','id_pembeli', 'total_bayar','total_item','total_harga','id_kasir'];
-    protected $visible = ['id_produk','id_pembeli', 'total_bayar','total_item','total_harga','id_kasir'];
+    protected $fillable = ['id_produk', 'id_pembeli', 'harga', 'total_bayar', 'total_item', 'total_harga', 'id_kasir'];
+    protected $visible = ['id_produk', 'id_pembeli', 'harga', 'total_bayar', 'total_item', 'total_harga', 'id_kasir'];
+
+    public function Produk()
+    {
+        return $this->belongsTo(Produk::class, 'id_produk');
+    }
+    public function Kasir()
+    {
+        return $this->belongsTo(kasir::class, 'id_kasir');
+    }
+    public function Pembeli()
+    {
+        return $this->belongsTo(Pembeli::class, 'id_pembeli');
+    }
 }

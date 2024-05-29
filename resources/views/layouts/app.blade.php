@@ -48,6 +48,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('Produk.index') }}">Menu</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('Transaksi.index') }}">Transaksi</a>
+                        </li>
                         @endguest
                     </ul>
 

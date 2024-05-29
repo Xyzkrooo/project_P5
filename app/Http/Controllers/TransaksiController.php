@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\kasir;
+use App\Models\Pembeli;
+use App\Models\Produk;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
@@ -9,40 +12,46 @@ class TransaksiController extends Controller
 {
 
     public function index()
-    {
-        $transaksi = transaksi::latest()->paginate(5);
-        return view('transaksi.index', compact('transaksi'));
-    }
+{
+    $pembeli = Pembeli::all();
+    $produk = Produk::all();
+    $kasir = kasir::all();
+
+    $transaksi = Transaksi::with('produk', 'pembeli', 'kasir')->latest()->paginate(5);
+
+    return view('transaksi.index', compact('transaksi', 'pembeli', 'produk', 'kasir'));
+}
+
 
     public function create()
     {
-        // $transaksi = merek::all();
-        return view('transaksi.create');
+        $pembeli = Pembeli::all();
+        $produk = Produk::all();
+        $kasir = kasir::all();
+        return view('transaksi.create', compact('pembeli', 'produk', 'kasir'));
     }
 
-    public function store(Request $request)
+   public function store(Request $request)
     {
-        //validate form
         $this->validate($request, [
             'id_produk' => 'required',
-            'id_transaksi' => 'required',
-            'total_bayar' => 'required|min:3',
-            'total_item' => 'required|min:1',
-            'total_harga' => 'required|min:1',
+            'id_pembeli' => 'required',
+            'total_item' => 'required|integer|min:1',
             'id_kasir' => 'required',
         ]);
 
-        $transaksi = new transaksi();
+        $produk = Produk::findOrFail($request->id_produk);
+
+        $transaksi = new Transaksi();
         $transaksi->id_produk = $request->id_produk;
-        $transaksi->id_transaksi = $request->id_transaksi;
-        $transaksi->total_bayar = $request->total_bayar;
+        $transaksi->id_pembeli = $request->id_pembeli;
+        $transaksi->harga = $produk->harga;
         $transaksi->total_item = $request->total_item;
-        $transaksi->total_harga = $request->total_harga;
+        $transaksi->total_harga = $produk->harga * $request->total_item;
         $transaksi->id_kasir = $request->id_kasir;
-        // upload image
 
         $transaksi->save();
-        return redirect()->route('transaksi.index');
+        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil disimpan.');
     }
 
     public function show($id)
@@ -63,8 +72,8 @@ class TransaksiController extends Controller
         //validate form
         $this->validate($request, [
             'id_produk' => 'required',
-            'id_transaksi' => 'required',
-            'total_bayar' => 'required|min:3',
+            'id_pembeli' => 'required',
+            'harga' => 'required',
             'total_item' => 'required|min:1',
             'total_harga' => 'required|min:1',
             'id_kasir' => 'required',
@@ -72,10 +81,11 @@ class TransaksiController extends Controller
 
         $transaksi = transaksi::findOrFail($id);
         $transaksi->id_produk = $request->id_produk;
-        $transaksi->id_transaksi = $request->id_transaksi;
-        $transaksi->total_bayar = $request->total_bayar;
+        $transaksi->id_pembeli = $request->id_pembeli;
+        $transaksi->harga = $request->harga;
+        $transaksi->bayar = $request->bayar;
         $transaksi->total_item = $request->total_item;
-        $transaksi->total_harga = $request->total_harga;
+        $transaksi->total_harga = $request->harga * $request->total_item;
         $transaksi->id_kasir = $request->id_kasir;
 
         // upload image
@@ -89,7 +99,7 @@ class TransaksiController extends Controller
     {
         $transaksi = transaksi::findOrFail($id);
         $transaksi->delete();
-        return redirect()->route('transaksi.index');
+        return redirect()->route('Transaksi.index');
 
     }
 }

@@ -11,4 +11,8 @@ class kasir extends Model
 
     protected $fillable = ['nama_kasir', 'jk', 'image'];
     protected $visible = ['nama_kasir', 'jk', 'image'];
+    public function kasir()
+    {
+        return $this->hasMany(kasir::class, 'id_kasir');
+    }
 }

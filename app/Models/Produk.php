@@ -10,4 +10,8 @@ class Produk extends Model
     use HasFactory;
     protected $fillable = ['nama', 'harga', 'stok', 'deskripsi', 'image'];
     protected $visible = ['nama', 'harga', 'stok', 'deskripsi', 'image'];
+    public function Produk()
+    {
+        return $this->hasMany(Produk::class, 'id_produk');
+    }
 }

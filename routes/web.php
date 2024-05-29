@@ -26,3 +26,6 @@ route::resource('Kasir', App\Http\Controllers\KasirController::class)->middlewar
 route::resource('Produk', App\Http\Controllers\ProdukController::class)->middleware('auth');
 
 route::resource('Pembeli', App\Http\Controllers\PembeliController::class)->middleware('auth');
+
+route::resource('Transaksi', App\Http\Controllers\TransaksiController::class)->middleware('auth');
+
