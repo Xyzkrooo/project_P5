@@ -29,7 +29,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php $no = 1; @endphp
+                                    @php $no = 1; $totalHarga = 0; @endphp
                                     @forelse ($transaksi as $data)
                                         <tr>
                                             <td>{{ $no++ }}</td>
@@ -76,23 +76,34 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        @if ($data->produk)
+                                            @php $totalHarga += $data->produk->harga * $data->total_item; @endphp
+                                        @endif
                                     @empty
                                         <tr>
                                             <td colspan="7" class="text-center">
                                                 Data belum tersedia.
                                             </td>
                                         </tr>
-
-
+                                    @endforelse
                                 </tbody>
                             </table>
                             {!! $transaksi->links() !!}
                         </div>
                     </div>
-                    <div class="card-footer text-muted">
-                        {{-- <h2>Total Harga <span class="d-flex justify-content-between">{{ $data->total_harga }}</span></h2> --}}
+
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <h4>Total Harga: {{ number_format($totalHarga, 2) }}</h4>
+                        <a href="{{ route('Transaksi.struk') }}" class="btn btn-sm btn-primary">Bayar</a>
+                        {{-- <form action="{{ route('transaksi.store') }}" method="POST" class="" style="width: 30%">
+                            @csrf
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Input Bayar" name="total_bayar">
+                                <button class="btn btn-primary" type="submit">Bayar</button>
+                            </div>
+                        </form> --}}
                     </div>
-                    @endforelse
+
                 </div>
             </div>
         </div>
