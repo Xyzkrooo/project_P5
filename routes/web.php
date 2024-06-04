@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TransaksiController;
-
+use App\Http\Controllers\Detail_transaksiController;
+use App\Models\kasir;
+use App\Models\Produk;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +19,20 @@ use App\Http\Controllers\TransaksiController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $produk = Produk::query()->paginate(10);
+
+    return view('welcome', compact('produk'));
 });
+// <h5 class="card-title">{{ $data->nama }}</h5>
+//                                     <p class="card-text">Rp : {{number_format($data->harga,2) }}</p>
+//                                     <p class="card-text">Stok : {!! $data->stok !!}</p>
+//                                     <p class="card-text">{{ $data->deskripsi }}</p>
 
 Auth::routes();
+
+
+Route::post('/detail-transaksi', [Detail_transaksiController::class, 'store'])->name('Detail_transaksi.store')->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //tambah di bawah ini
@@ -31,4 +43,6 @@ route::resource('Produk', App\Http\Controllers\ProdukController::class)->middlew
 route::resource('Pembeli', App\Http\Controllers\PembeliController::class)->middleware('auth');
 
 route::resource('Transaksi', App\Http\Controllers\TransaksiController::class)->middleware('auth');
+
+route::resource('Transaksi', App\Http\Controllers\Detail_transaksiController::class)->middleware('auth');
 

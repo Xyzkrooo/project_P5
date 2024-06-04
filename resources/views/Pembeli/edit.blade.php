@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.sidebar')
 
 @section('content')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -19,10 +21,11 @@
                             enctype="multipart/form-data">
                             @method('put')
                             @csrf
-                             <div class="mb-3">
+                            <div class="mb-3">
                                 <label class="form-label">Nama Pembeli</label>
                                 <input type="text" class="form-control @error('nama_pembeli') is-invalid @enderror"
-                                    name="nama_pembeli" value="{{ old('nama_pembeli') }}" placeholder="Nama Pembeli" required>
+                                    name="nama_pembeli" value="{{ old('nama_pembeli') }}" placeholder="Nama Pembeli"
+                                    required>
                                 @error('nama_pembeli')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

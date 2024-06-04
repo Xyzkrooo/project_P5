@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.sidebar')
 
 @section('content')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -15,11 +17,10 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('Kasir.update', $kasir->id) }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('Kasir.update', $kasir->id) }}" method="POST" enctype="multipart/form-data">
                             @method('put')
                             @csrf
-                             <div class="mb-3">
+                            <div class="mb-3">
                                 <label class="form-label">Nama Kasir</label>
                                 <input type="text" class="form-control @error('nama_kasir') is-invalid @enderror"
                                     name="nama_kasir" value="{{ old('nama_kasir') }}" placeholder="Nama Kasir" required>

@@ -25,7 +25,7 @@ class ProdukController extends Controller
         //validate form
         $this->validate($request, [
             'nama' => 'required|min:5',
-            'harga' => 'required|min:4',
+            'harga' => 'required|min:2',
             'stok' => 'required|min:1',
             'deskripsi' => 'required|min:10',
             'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
@@ -61,7 +61,7 @@ class ProdukController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required|min:5',
-            'harga' => 'required|min:4',
+            'harga' => 'required|min:2',
             'stok' => 'required|min:1',
             'deskripsi' => 'required|min:10',
             'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',

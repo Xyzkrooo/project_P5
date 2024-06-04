@@ -40,16 +40,7 @@
                         @guest
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('Kasir.index') }}">Pegawai</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('Pembeli.index') }}">Pembeli</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('Produk.index') }}">Menu</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('Transaksi.index') }}">Transaksi</a>
+                            <a class="nav-link" href="{{ route('Menu') }}">Menu</a>
                         </li>
                         @endguest
                     </ul>
@@ -73,7 +64,7 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->   name }}
+                                {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

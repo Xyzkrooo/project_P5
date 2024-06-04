@@ -1,15 +1,20 @@
-@extends('layouts.app')
+@extends('layouts.sidebar')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
+<!-- styles -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<div class="container">
+
+    <div class="container mt-4">
+        <div class="row justify-content-start">
             <div class="col-md-12">
                 <div class="card mx-auto" style="width: 80%">
                     <div class="card-header">
                         <div class="float-start">
                             {{ __('transaksi') }}
                         </div>
-                        <div class="float-end">
+                        <div class="float-end mt">
                             <a href="{{ route('Transaksi.create') }}" class="btn btn-sm btn-outline-primary">Tambah</a>
                         </div>
                     </div>
@@ -70,9 +75,9 @@
                                                     {{-- <a href="{{ route('Pembeli.show', $data->id) }}"
                                                         class="btn btn-sm btn-outline-dark">Show</a> | --}}
                                                     <a href="{{ route('Transaksi.edit', $data->id) }}"
-                                                        class="btn btn-sm btn-outline-success">Edit</a> |
+                                                        class="btn btn-sm btn-outline-success"><i class='bx bx-edit'></i></a> |
                                                     <button type="submit" onclick="return confirm('Are You Sure ?');"
-                                                        class="btn btn-sm btn-outline-danger">Delete</button>
+                                                        class="btn btn-sm btn-outline-danger"><i class='bx bx-trash' ></i></button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -94,7 +99,7 @@
 
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <h4>Total Harga: {{ number_format($totalHarga, 2) }}</h4>
-                        <a href="{{ route('Transaksi.struk') }}" class="btn btn-sm btn-primary">Bayar</a>
+                        {{-- <a href="{{ route('Transaksi.struk') }}" class="btn btn-sm btn-primary">Bayar</a> --}}
                         {{-- <form action="{{ route('transaksi.store') }}" method="POST" class="" style="width: 30%">
                             @csrf
                             <div class="input-group">
