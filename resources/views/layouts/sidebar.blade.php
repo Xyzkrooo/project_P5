@@ -379,17 +379,17 @@
 
                 <li class="">
                     <a href="{{ route('Kasir.index') }}">
-                        <i class='bx bxs-face icon'></i>
+                        <i class='bx bx bxs-user icon'></i>
                         <span class="text nav-text">Kasir</span>
                     </a>
                 </li>
 
-                <li class="">
+                {{-- <li class="">
                     <a href="{{ route('Pembeli.index') }}">
-                        <i class='bx bxs-user icon'></i>
+                        <i class='bx bxs-face icon'></i>
                         <span class="text nav-text">Pembeli</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="">
                     <a href="{{ route('Produk.index') }}">
@@ -424,8 +424,6 @@
         </div>
     </nav>
     <section class="home">
-
-        <div class="text">Home</div>
         @yield('content')
     </section>
 

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\Rules\Enum;
 
 return new class extends Migration
 {
@@ -16,9 +17,9 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_produk');
-            $table->unsignedBigInteger('id_pembeli');
             $table->integer('harga');
             $table->integer('total_item');
+            $table->integer('total_harga');
             $table->unsignedBigInteger('id_kasir');
 
             $table->timestamps();

@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Transaksi extends Model
 {
     use HasFactory;
-    protected $fillable = ['id_produk', 'id_pembeli', 'harga', 'total_item', 'id_kasir'];
-    protected $visible = ['id_produk', 'id_pembeli', 'harga', 'total_item','id_kasir'];
+    protected $fillable = ['id_produk', 'harga', 'total_item','total_harga','id_kasir'];
+    protected $visible = ['id_produk', 'harga', 'total_item','total_harga','id_kasir'];
 
     public function Produk()
     {
@@ -23,4 +23,6 @@ class Transaksi extends Model
     {
         return $this->belongsTo(Pembeli::class, 'id_pembeli');
     }
+
+    protected $guarded = [];
 }

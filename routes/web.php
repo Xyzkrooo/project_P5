@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Detail_transaksiController;
-use App\Models\kasir;
 use App\Models\Produk;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +31,6 @@ Route::get('/', function () {
 Auth::routes();
 
 
-Route::post('/detail-transaksi', [Detail_transaksiController::class, 'store'])->name('Detail_transaksi.store')->middleware('auth');
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //tambah di bawah ini
 route::resource('Kasir', App\Http\Controllers\KasirController::class)->middleware('auth');
@@ -44,5 +41,4 @@ route::resource('Pembeli', App\Http\Controllers\PembeliController::class)->middl
 
 route::resource('Transaksi', App\Http\Controllers\TransaksiController::class)->middleware('auth');
 
-route::resource('Transaksi', App\Http\Controllers\Detail_transaksiController::class)->middleware('auth');
-
+Route::get('/getTotalHarga/{id}', 'TransaksiController@getTotalHarga');

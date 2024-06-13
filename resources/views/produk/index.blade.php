@@ -81,7 +81,7 @@
     <!-- styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <div class="container mt-2">
+    <div class="container mt-5 ">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
@@ -97,7 +97,7 @@
                 <div class="container mt-4">
                     <div class="d-flex flex-row flex-wrap">
                         @forelse ($produk as $data)
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <a href="{{ route('Produk.show', $data->id) }}" class="text-decoration-none">
                                     <div class="card1">
                                         <img class="card1-img" src="{{ asset('/storage/produks/' . $data->image) }}">
@@ -122,7 +122,7 @@
                 </div>
                 
 
-                {!! $produk->withQueryString()->links('pagination::bootstrap-4') !!}
+                {{-- {!! $produk->withQueryString()->links('pagination::bootstrap-4') !!} --}}
             </div>
         </div>
     </div>

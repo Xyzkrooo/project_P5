@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produk;
 use Illuminate\Http\Request;
-use Storage;
+use Illuminate\support\facades\Storage;
 
 class ProdukController extends Controller
 {
@@ -64,7 +64,7 @@ class ProdukController extends Controller
             'harga' => 'required|min:2',
             'stok' => 'required|min:1',
             'deskripsi' => 'required|min:10',
-            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'image' => 'image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
         $produk = Produk::findOrFail($id);

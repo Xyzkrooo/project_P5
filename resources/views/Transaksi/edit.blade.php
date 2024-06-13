@@ -3,8 +3,8 @@
 @section('content')
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
 integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <div class="container">
-        <div class="row justify-content-center">
+    <div class="container mt-4">
+        <div class="row justify-content-start">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
@@ -36,22 +36,14 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
                             </div>
 
                             <div class="mb-3">
-                                <label for="id_pembeli" class="form-label">Pembeli</label>
-                                <select name="id_pembeli" id="id_pembeli" class="form-control">
-                                    <option disabled selected ="">nama pembeli</option>
-                                    @forelse ($pembeli as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nama_pembeli }}</option>
-                                    @empty
-                                        <option value="" disabled>Data Belum Tersedia</option>
-                                    @endforelse
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
                                 <label for="total_item" class="form-label">Total Item</label>
                                 <input type="number" name="total_item" id="total_item" class="form-control" min="1"
                                     required>
                             </div>
+                            {{-- <div class="mb-3">
+                                <label for="total_item" class="form-label">Total Bayar</label>
+                                <input type="text" class="form-control" placeholder="Input Bayar" name="total_bayar">
+                            </div> --}}
                             <div class="mb-3">
                                 <label for="id_kasir" class="form-label">Kasir</label>
                                 <select name="id_kasir" id="id_kasir" class="form-control">
@@ -64,8 +56,8 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-sm btn-primary">SIMPAN</button>
-                            <button type="reset" class="btn btn-sm btn-warning">RESET</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="reset" class="btn btn-warning">Reset</button>
                         </form>
                     </div>
                 </div>

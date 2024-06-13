@@ -4,7 +4,7 @@
 <!-- styles -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
 integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <div class="container">
+    <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card" style="margin-top: 10%">
@@ -20,7 +20,7 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
                     <div class="card-body mb-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="{{ asset('storage/ps/' . $kasir->image) }}" class="img-fluid rounded-start" >
+                                <img src="{{ asset('storage/kasirs/' . $kasir->image) }}" class="img-fluid rounded-start" >
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">

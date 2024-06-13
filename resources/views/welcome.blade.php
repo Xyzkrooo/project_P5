@@ -519,20 +519,26 @@
     </div>
 
     <!-- Kartu-kartu produk -->
-    <div class="container mt-5">
-        <div class="d-flex flex-row flex-wrap">
-            <div class="col-md-3">
+    <div class="mt-5"></div>
+    <div class="col-md-12 ">
+        <div class="container mt-4">
+            <div class="d-flex flex-row flex-wrap">
                 @forelse ($produk as $data)
-                    <div class="card1">
-                        <img class="card1-img" src="{{ asset('/storage/produks/' . $data->image) }}">
-                        <div class="card1-info">
-                            <p class="text-title">{{ $data->nama }}</p>
-                            <p class="text-body">{{ $data->deskripsi }}</p>
-                        </div>
-                        <hr>
-                        <div class="card-footer">
-                            <span class="text-title">Rp : {{ number_format($data->harga, 2) }}</span>
-                        </div>
+                    <div class="col-md-4">
+                        <a href="{{ route('Produk.show', $data->id) }}" class="text-decoration-none">
+                            <div class="card1">
+                                <img class="card1-img" src="{{ asset('/storage/produks/' . $data->image) }}">
+                                <div class="card1-info">
+                                    <p class="text-title">{{ $data->nama }}</p>
+                                    <p class="text-body">{{ $data->deskripsi }}</p>
+                                </div>
+                        
+                                <div class="card1-footer">                                                
+                                    <span class="text-title">Rp : {{ number_format($data->harga, 2) }}</span>
+                                    <span class="text-body">Stok : {{ $data->stok }}</span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 @empty
                     <div class="col-12">
@@ -541,10 +547,10 @@
                 @endforelse
             </div>
         </div>
-    </div>
+        
 
-    <!-- Pagination -->
-    {!! $produk->withQueryString()->links('pagination::bootstrap-4') !!}
+        {!! $produk->withQueryString()->links('pagination::bootstrap-4') !!}
+    </div>
 </body>
 
 </html>

@@ -6,7 +6,7 @@
 integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <div class="container">
 
-    <div class="container mt-4">
+    <div class="container mt-5">
         <div class="row justify-content-start">
             <div class="col-md-12">
                 <div class="card mx-auto" style="width: 80%">
@@ -15,7 +15,7 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
                             {{ __('transaksi') }}
                         </div>
                         <div class="float-end mt">
-                            <a href="{{ route('Transaksi.create') }}" class="btn btn-sm btn-outline-primary">Tambah</a>
+                            <a href="{{ route('Transaksi.create') }}" class="btn btn-sm btn-outline-primary"><i class='bx bx-plus' ></i></a>
                         </div>
                     </div>
 
@@ -25,11 +25,11 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Produk</th>
-                                        <th>Pembeli</th>
+                                        <th>Nama</th>
                                         <th>Harga</th>
-                                        <th>Total Item</th>
-                                        <th>Kasir</th>
+                                        <th>Jumlah</th>
+                                        <th>total</th>
+                                        <th>Tanggal</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -46,6 +46,26 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
                                                 @endif
                                             </td>
                                             <td>
+                                                @if ($data->produk)
+                                                    Rp. {{ number_format($data->produk->harga, 2) }} 
+                                                @else
+                                                    harga tidak ditemukan
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                
+                                                 {{ $data->total_item }} 
+
+                                    
+                                        </td>
+                                            <td>
+                                                
+                                                    Rp. {{ number_format($data->total_harga, 2) }} 
+
+                                        
+                                            </td>
+                                            <td>{{ date('d F Y', strtotime($data->created_at)) }}</td>
+                                            {{-- <td>
                                                 @if ($data->pembeli)
                                                     {{ $data->pembeli->nama_pembeli }}
                                                 @else
@@ -59,6 +79,7 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
                                                     harga tidak ditemukan
                                                 @endif
                                             </td>
+                                            
                                             <td>{{ $data->total_item }}</td>
                                             <td>
                                                 @if ($data->kasir)
@@ -66,7 +87,7 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
                                                 @else
                                                     produk tidak ditemukan
                                                 @endif
-                                            </td>
+                                            </td> --}}
 
                                             <td>
                                                 <form action="{{ route('Transaksi.destroy', $data->id) }}" method="POST">
@@ -92,13 +113,15 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
                                         </tr>
                                     @endforelse
                                 </tbody>
+                                <tfoot>
+                                    <h5>Pemasukan: {{ number_format($totalHarga, 2) }}</h5>
+                                </tfoot>
                             </table>
-                            {!! $transaksi->links() !!}
+                            
+                            {!! $transaksi->links('pagination::bootstrap-5') !!}
                         </div>
                     </div>
-
-                    <div class="card-footer d-flex justify-content-between align-items-center">
-                        <h4>Total Harga: {{ number_format($totalHarga, 2) }}</h4>
+                        
                         {{-- <a href="{{ route('Transaksi.struk') }}" class="btn btn-sm btn-primary">Bayar</a> --}}
                         {{-- <form action="{{ route('transaksi.store') }}" method="POST" class="" style="width: 30%">
                             @csrf
@@ -107,7 +130,6 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
                                 <button class="btn btn-primary" type="submit">Bayar</button>
                             </div>
                         </form> --}}
-                    </div>
 
                 </div>
             </div>
